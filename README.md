@@ -129,8 +129,8 @@ Language toggle appears when `siteConfig.locales.length > 1`.
 Example `content/locales/index.ts`:
 
 ```ts
-import en from './en.json';
-import th from './th.json';
+import en from "./en.json";
+import th from "./th.json";
 
 export const localeBundles = {
   en,
@@ -195,6 +195,7 @@ See `CONTRIBUTING.md`.
 
 ## Sites Using This Template
 
+- [cursorbulgaria.com](https://cursorbulgaria.com)
 - [cursorthailand.com](https://cursorthailand.com)
 - [cursorserbia.com](https://cursorserbia.com)
 - [cursorcroatia.com](https://cursorcroatia.com)
@@ -208,7 +209,7 @@ Using this template? Open a PR to add your site here.
 
 ## Credits
 
-Designed and implemented by [Luis Fernando Romero Calero](https://lfrc.me) and [Cursor](https://cursor.com).
+Designed and implemented by [Luis Fernando Romero Calero](https://lfrc.me), [Kristiyan Velkov](https://kristiyanvelkov.com/), [Nico](https://nicomoehn.codes) and [Cursor](https://cursor.com).
 
 ## License
 
