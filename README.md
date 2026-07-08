@@ -195,15 +195,22 @@ See `CONTRIBUTING.md`.
 
 ## Sites Using This Template
 
-- [cursorbulgaria.com](https://cursorbulgaria.com)
-- [cursorthailand.com](https://cursorthailand.com)
-- [cursorserbia.com](https://cursorserbia.com)
-- [cursorcroatia.com](https://cursorcroatia.com)
-- [cursorsrilanka.com](https://cursorsrilanka.com)
 - [cursoraustria.com](https://cursoraustria.com)
-- [cursorgermany.com](https://cursorgermany.com)
-- [cursorslc.com](https://cursorslc.com)
+- [cursorbelgium.com](https://cursorbelgium.com)
+- [cursorbulgaria.com](https://cursorbulgaria.com)
+- [cursorcalgary.com](https://cursorcalgary.com)
+- [cursorcroatia.com](https://cursorcroatia.com)
 - [cursorelsalvador.com](https://cursorelsalvador.com)
+- [cursorgermany.com](https://cursorgermany.com)
+- [cursorindonesia.com](https://cursorindonesia.com)
+- [cursornetherlands.com](https://cursornetherlands.com)
+- [cursorromania.com](https://cursorromania.com)
+- [cursorserbia.com](https://cursorserbia.com)
+- [cursorslc.com](https://cursorslc.com)
+- [cursorsouthafrica.com](https://cursorsouthafrica.com)
+- [cursorsrilanka.com](https://cursorsrilanka.com)
+- [cursorthailand.com](https://cursorthailand.com)
+- [trento.cursor-italy.com](https://trento.cursor-italy.com)
 
 Using this template? Open a PR to add your site here.
 
