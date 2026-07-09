@@ -15,7 +15,7 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({ photos }) => {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.6, delay: 0.2 }}
-			className="h-[calc(100svh-56px)] border-t border-cursor-border overflow-hidden"
+			className="relative h-[calc(100svh-56px)] border-t border-cursor-border overflow-hidden"
 			style={{
 				maskImage: 'linear-gradient(to bottom, black 85%, transparent)',
 				WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent)',

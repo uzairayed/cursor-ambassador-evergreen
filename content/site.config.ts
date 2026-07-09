@@ -15,6 +15,7 @@ export const siteConfig = {
 		matchmaking: false,
 		photoDisclaimer: false,
 		lumaCalendar: false,
+		communityTweets: false,
 	},
 };
 

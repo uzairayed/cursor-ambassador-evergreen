@@ -42,6 +42,14 @@ pnpm verify
 
 This runs format check, lint, typecheck, bento layout validation, and production build.
 
+## Adding optional community tweets
+
+1. Add status URLs to `content/community-tweets.ts` (replace the example seed).
+2. Set `sections.communityTweets: true` in `content/site.config.ts`.
+3. Add translation keys under `home.communityTweets*` in each locale JSON if you use i18n.
+
+Only allowlisted tweet IDs are served by `/api/tweets/[id]`.
+
 ## Adding a New Locale
 
 1. Add a new JSON file under `content/locales/`.

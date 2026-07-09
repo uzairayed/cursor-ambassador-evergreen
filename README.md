@@ -18,13 +18,15 @@ Open `http://localhost:3000`.
 
 ### App routes
 
-- `app/page.tsx`: homepage (hero, ambassadors, featured, upcoming/past events, optional Luma calendar, world events, footer).
+- `app/page.tsx`: homepage (hero, ambassadors, featured, upcoming/past events, optional community tweets, optional Luma calendar, world events, footer).
 - `app/recaps/[slug]/page.tsx`: dynamic recap page route.
 - `app/slides/[id]/page.tsx`: optional workshop slides route.
 
 ### Core components
 
 - `components/HeroHeaderServer.tsx`: server-side daily photo shuffle into fixed bento slots.
+- `components/BentoGrid.tsx`: hero bento grid with tile washes and click-to-expand.
+- `components/CommunityTweets.tsx`: optional curated X/Twitter mosaic (`react-tweet`).
 - `components/FeaturedSection.tsx`: featured resource card.
 - `components/UpcomingEvents.tsx` and `components/PastEvents.tsx`: event lists.
 - `components/LumaCalendar.tsx`: optional embedded Luma calendar section.
@@ -45,6 +47,7 @@ This template is content-first. Most customization is done by editing files in `
 - `content/ambassadors.ts`: ambassador data and social links.
 - `content/partners.ts`: host/sponsor logos and URLs.
 - `content/world-events.ts`: world carousel entries.
+- `content/community-tweets.ts`: curated tweet status URLs for the optional mosaic.
 - `content/recaps/*.ts`: recap documents rendered by slug.
 - `content/locales/*.json`: translation dictionaries.
 - `content/locales/index.ts`: locale bundle registry consumed by `lib/i18n.tsx`.
@@ -59,7 +62,7 @@ Edit `content/site.config.ts`:
 - `lumaUrl`, `lumaCalendarEmbedUrl`, `cursorCommunityUrl`
 - `defaultLocale`, `locales`
 - `footerTagline`
-- `sections`: toggle optional blocks (`matchmaking`, `photoDisclaimer`, `lumaCalendar`)
+- `sections`: toggle optional blocks (`matchmaking`, `photoDisclaimer`, `lumaCalendar`, `communityTweets`)
 
 Set `NEXT_PUBLIC_SITE_URL` in `.env.local` for sitemap and metadata URLs.
 
@@ -71,7 +74,23 @@ Images shuffle once per day (seeded by date + community name) into fixed slots o
 
 Add at least as many images as slots (7 on desktop). Run `pnpm validate:bento` after editing slots.
 
-### 3) Events and recaps
+Each tile has a subtle accent wash and can expand to full-bleed on click (Escape or second click collapses). The daily shuffle is unchanged — interaction is client-side only.
+
+### 3) Community tweets (optional)
+
+Edit `content/community-tweets.ts` with status URLs from your chapter (`https://x.com/.../status/...`, not profile URLs). Set `relevance` to control order.
+
+Enable the section in `content/site.config.ts`:
+
+```ts
+sections: {
+  communityTweets: true,
+}
+```
+
+Tweets are fetched via `react-tweet` and cached at `app/api/tweets/[id]/route.ts` (allowlisted IDs only). The "Browse on X" link uses your `city` and `communityName` from site config.
+
+### 4) Events and recaps
 
 Edit `content/events.ts`.
 
@@ -88,7 +107,7 @@ To add a recap:
 2. Ensure the recap exports a valid recap object with a matching `slug`.
 3. Add `recapPath` in the corresponding event.
 
-### 4) Luma integration
+### 5) Luma integration
 
 - `siteConfig.lumaUrl` — Navbar "Join us", footer "All events", footer CTA fallback
 - `event.lumaUrl` — register links on upcoming event cards
@@ -98,7 +117,7 @@ The curated upcoming list and Luma embed serve different purposes. Avoid duplica
 
 To enable the calendar embed: copy the embed URL from Luma → Calendar → Embed into `lumaCalendarEmbedUrl`, then set `sections.lumaCalendar: true`.
 
-### 5) Optional slides
+### 6) Optional slides
 
 Slides are optional and live in `modules/slides/`.
 
@@ -108,14 +127,14 @@ Slides are optional and live in `modules/slides/`.
 
 If your community does not use slides, remove links to `/slides/*` from content.
 
-### 6) Ambassadors and partners
+### 7) Ambassadors and partners
 
 - `content/ambassadors.ts`: `name`, optional `role`, `photo`, and links (`x`, `linkedin`, `github`, `website`).
 - `content/partners.ts`: partner `name`, `logo`, `url`, optional `logoBg`, optional `logoHeight`.
 
 Local SVG logos in `public/images/partners/` are recommended.
 
-### 7) World events carousel
+### 8) World events carousel
 
 Edit `content/world-events.ts` entries (`src`, `location`, `date`, `alt`). `GlobalEvents` renders the section; `WorldEventsCarousel` renders the photo grid.
 
@@ -146,6 +165,7 @@ Optional sections are gated in `siteConfig.sections`:
 - `matchmaking`: co-working matchmaking card
 - `photoDisclaimer`: photo consent notice
 - `lumaCalendar`: embedded Luma calendar (also requires `lumaCalendarEmbedUrl`)
+- `communityTweets`: curated X/Twitter mosaic (also edit `content/community-tweets.ts`)
 
 Remove an always-on section by deleting its component from `app/page.tsx`.
 
@@ -162,7 +182,7 @@ pnpm typecheck        # TypeScript only
 
 This template uses local images in `public/images/` for hero photos, world events, ambassadors, and partner logos.
 
-With fully local images, `next.config.js` does not need remote image domains.
+With fully local images, `next.config.js` does not need remote image domains for hero photos. If you enable community tweets, `pbs.twimg.com` and `abs.twimg.com` are already allowlisted for tweet avatars and media.
 
 ## Deployment
 

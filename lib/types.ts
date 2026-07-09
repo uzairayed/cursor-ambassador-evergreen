@@ -131,4 +131,5 @@ export interface SiteSections {
 	matchmaking?: boolean;
 	photoDisclaimer?: boolean;
 	lumaCalendar?: boolean;
+	communityTweets?: boolean;
 }
