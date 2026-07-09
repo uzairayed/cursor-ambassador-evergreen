@@ -80,6 +80,8 @@ Each tile has a subtle accent wash and can expand to full-bleed on click (Escape
 
 Edit `content/community-tweets.ts` with status URLs from your chapter (`https://x.com/.../status/...`, not profile URLs). Set `relevance` to control order.
 
+**Replace the example seed before enabling.** The template ships global Cafe Cursor / Ben Lang examples. If you set `communityTweets: true` without replacing them, visitors will see those posts — not your chapter's.
+
 Enable the section in `content/site.config.ts`:
 
 ```ts
@@ -88,7 +90,7 @@ sections: {
 }
 ```
 
-Tweets are fetched via `react-tweet` and cached at `app/api/tweets/[id]/route.ts` (allowlisted IDs only). The "Browse on X" link uses your `city` and `communityName` from site config.
+Tweets are fetched via `react-tweet` and cached at `app/api/tweets/[id]/route.ts` (allowlisted IDs only). The "Browse on X" link uses your `city` and `communityName` from site config. The component is dynamically imported so chapters that leave the toggle off do not ship `react-tweet` in the homepage bundle.
 
 ### 4) Events and recaps
 
@@ -172,11 +174,17 @@ Remove an always-on section by deleting its component from `app/page.tsx`.
 ## Scripts
 
 ```bash
-pnpm dev              # local development
-pnpm verify           # format + lint + typecheck + bento validate + build
-pnpm validate:bento   # slot overlap / grid coverage check
-pnpm typecheck        # TypeScript only
+pnpm dev                         # local development
+pnpm verify                      # format + lint + typecheck + validators + build + tweet API smoke
+pnpm validate:bento              # slot overlap / grid coverage check
+pnpm validate:community-tweets   # tweet URL/id allowlist + Browse on X href
+pnpm test:smoke                  # production server: allowlisted tweet 200, unknown 400
+pnpm typecheck                   # TypeScript only
 ```
+
+## Changelog
+
+See [`CHANGELOG.md`](CHANGELOG.md) for version history (current: **0.3.0**).
 
 ## Image Strategy
 

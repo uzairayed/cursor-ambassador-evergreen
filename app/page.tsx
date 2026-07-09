@@ -12,7 +12,7 @@ import JsonLd from '@/components/JsonLd';
 import MatchmakingSection from '@/components/MatchmakingSection';
 import PhotoDisclaimer from '@/components/PhotoDisclaimer';
 import LumaCalendarSection from '@/components/LumaCalendar';
-import CommunityTweets from '@/components/CommunityTweets';
+import CommunityTweetsSection from '@/components/CommunityTweetsSection';
 import { siteConfig } from '@/content/site.config';
 import { upcomingEvents } from '@/content/events';
 
@@ -75,7 +75,7 @@ const Home: React.FC = () => (
 			{siteConfig.sections.communityTweets ? (
 				<>
 					<SectionDivider />
-					<CommunityTweets />
+					<CommunityTweetsSection />
 				</>
 			) : null}
 			<SectionDivider />

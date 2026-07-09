@@ -1,0 +1,45 @@
+# Changelog
+
+All notable changes to this template are documented here.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+## [0.3.0] - 2026-07-09
+
+### Added
+
+- Hero tile accent washes and click-to-expand (FLIP) on the daily-seeded bento grid; Escape or second click collapses; respects `prefers-reduced-motion`
+- Optional community tweets mosaic (`sections.communityTweets`, default `false`) via `react-tweet`
+- `content/community-tweets.ts` for curated status URLs with relevance sorting
+- Cached allowlisted API route at `/api/tweets/[id]`
+- City-aware "Browse on X" search link derived from `siteConfig`
+- `scripts/validate-community-tweets.ts` and `scripts/smoke-tweets-api.mjs` in `pnpm verify`
+
+### Changed
+
+- `BentoGrid` is interactive (expand/collapse) for all sites using the template hero
+- CSP in `proxy.ts` allows Twitter image/media hosts when community tweets are enabled
+- `next.config.js` adds `pbs.twimg.com` and `abs.twimg.com` to `images.remotePatterns`
+- Community tweets load via dynamic import so the homepage does not ship `react-tweet` when the section is off
+
+### Notes for consumers
+
+- Run `pnpm install` after pulling (`react-tweet` is a new dependency)
+- Community tweets are **off by default** — no config change required for existing chapters
+- Before enabling `sections.communityTweets: true`, replace the example seed URLs in `content/community-tweets.ts` with your chapter's posts; otherwise the mosaic shows global Cafe Cursor examples
+
+## [0.2.0] - 2026-07-08
+
+### Added
+
+- Section toggles (`matchmaking`, `photoDisclaimer`, `lumaCalendar`)
+- Seeded daily hero bento shuffle with `pnpm validate:bento`
+- Coming-soon CTA for events without Luma URLs
+- Slides sitemap support
+
+### Changed
+
+- Orange CTA tokens and reduced-motion handling
+
+[0.3.0]: https://github.com/luisfer/cursor-ambassador-evergreen/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/luisfer/cursor-ambassador-evergreen/releases/tag/v0.2.0

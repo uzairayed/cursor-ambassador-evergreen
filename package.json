@@ -1,6 +1,6 @@
 {
 	"name": "cursor-ambassador-evergreen",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"private": false,
 	"license": "MIT",
 	"scripts": {
@@ -13,7 +13,9 @@
 		"format:check": "oxfmt --check .",
 		"typecheck": "tsc --noEmit",
 		"validate:bento": "tsx scripts/validate-bento.ts",
-		"verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm validate:bento && pnpm build"
+		"validate:community-tweets": "tsx scripts/validate-community-tweets.ts",
+		"test:smoke": "node scripts/smoke-tweets-api.mjs",
+		"verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm validate:bento && pnpm validate:community-tweets && pnpm build && pnpm test:smoke"
 	},
 	"dependencies": {
 		"@vercel/analytics": "~1.6.1",
@@ -23,7 +25,7 @@
 		"next": "~16.2.6",
 		"react": "~19.2.4",
 		"react-dom": "~19.2.4",
-		"react-tweet": "^3.3.1",
+		"react-tweet": "~3.3.1",
 		"simple-icons": "~16.9.0"
 	},
 	"devDependencies": {
