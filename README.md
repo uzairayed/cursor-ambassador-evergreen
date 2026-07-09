@@ -214,27 +214,27 @@ See `CONTRIBUTING.md`.
 
 ## Sites Using This Template
 
-| Country / region | Site | Maintainer(s) |
-|---|---|---|
-| Austria | [cursoraustria.com](https://cursoraustria.com) | — |
-| Belgium | [cursorbelgium.com](https://cursorbelgium.com) | [Kris](https://github.com/krismatterz) (`@krismatterz`) |
-| Bulgaria | [cursorbulgaria.com](https://cursorbulgaria.com) | [Kristiyan Velkov](https://github.com/kristiyan-velkov) |
-| Canada (Calgary) | [cursorcalgary.com](https://cursorcalgary.com) | — |
-| Croatia | [cursorcroatia.com](https://cursorcroatia.com) | [Nico](https://github.com/nitodeco) |
-| El Salvador | [cursorelsalvador.com](https://cursorelsalvador.com) | — |
-| Germany | [cursorgermany.com](https://cursorgermany.com) | [Maurice](https://github.com/mpdesigncode27) |
-| Indonesia | [cursorindonesia.com](https://cursorindonesia.com) | — |
-| Italy (Trento) | [trento.cursor-italy.com](https://trento.cursor-italy.com) | [Davide Carlomagno](https://github.com/dvdcarlomagno) |
-| Netherlands | [cursornetherlands.com](https://cursornetherlands.com) | Rogier Muller, Thijs Sondag |
-| Romania | [cursorromania.com](https://cursorromania.com) | [Sergei Chyrkov](https://github.com/chyrkov) |
-| Serbia | [cursorserbia.com](https://cursorserbia.com) | [Aleksandar Hadzibabic](https://github.com/hadzija7) |
-| South Africa | [cursorsouthafrica.com](https://cursorsouthafrica.com) | [@TKala82](https://github.com/TKala82) |
-| Sri Lanka | [cursorsrilanka.com](https://cursorsrilanka.com) | Rasal Jayasinghe |
-| Thailand | [cursorthailand.com](https://cursorthailand.com) | [Luisfer Romero Calero](https://github.com/luisfer) |
-| UAE | [cursoruae.com](https://cursoruae.com) | [Juanjo do Olmo](https://github.com/SimplyJuanjo) |
-| USA (Salt Lake City) | [cursorslc.com](https://cursorslc.com) | [Will Rowston](https://github.com/wrowston) |
+| Country / region     | Site                                                       | Maintainer(s)                                           |
+| -------------------- | ---------------------------------------------------------- | ------------------------------------------------------- |
+| Austria              | [cursoraustria.com](https://cursoraustria.com)             | —                                                       |
+| Belgium              | [cursorbelgium.com](https://cursorbelgium.com)             | [Kris](https://github.com/krismatterz) (`@krismatterz`) |
+| Bulgaria             | [cursorbulgaria.com](https://cursorbulgaria.com)           | [Kristiyan Velkov](https://github.com/kristiyan-velkov) |
+| Canada (Calgary)     | [cursorcalgary.com](https://cursorcalgary.com)             | —                                                       |
+| Croatia              | [cursorcroatia.com](https://cursorcroatia.com)             | [Nico](https://github.com/nitodeco)                     |
+| El Salvador          | [cursorelsalvador.com](https://cursorelsalvador.com)       | —                                                       |
+| Germany              | [cursorgermany.com](https://cursorgermany.com)             | [Maurice](https://github.com/mpdesigncode27)            |
+| Indonesia            | [cursorindonesia.com](https://cursorindonesia.com)         | —                                                       |
+| Italy (Trento)       | [trento.cursor-italy.com](https://trento.cursor-italy.com) | [Davide Carlomagno](https://github.com/dvdcarlomagno)   |
+| Netherlands          | [cursornetherlands.com](https://cursornetherlands.com)     | Rogier Muller, Thijs Sondag                             |
+| Romania              | [cursorromania.com](https://cursorromania.com)             | [Sergei Chyrkov](https://github.com/chyrkov)            |
+| Serbia               | [cursorserbia.com](https://cursorserbia.com)               | [Aleksandar Hadzibabic](https://github.com/hadzija7)    |
+| South Africa         | [cursorsouthafrica.com](https://cursorsouthafrica.com)     | [@TKala82](https://github.com/TKala82)                  |
+| Sri Lanka            | [cursorsrilanka.com](https://cursorsrilanka.com)           | Rasal Jayasinghe                                        |
+| Thailand             | [cursorthailand.com](https://cursorthailand.com)           | [Luisfer Romero Calero](https://github.com/luisfer)     |
+| UAE                  | [cursoruae.com](https://cursoruae.com)                     | [Juanjo do Olmo](https://github.com/SimplyJuanjo)       |
+| USA (Salt Lake City) | [cursorslc.com](https://cursorslc.com)                     | [Will Rowston](https://github.com/wrowston)             |
 
-> Maintainer links point to the GitHub profile that owns or maintains the chapter site when known. Corrections welcome via PR.
+> This list is forked or deployed from this repo only. Maintainer links point to the GitHub profile that owns or maintains the chapter site when known. Corrections welcome via PR.
 
 Using this template? Open a PR to add your site here.
 
