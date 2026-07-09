@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Tweet, TweetSkeleton, type TwitterComponents } from 'react-tweet';
 import 'react-tweet/theme.css';
 import { useI18n } from '@/lib/i18n';
+import { Button } from '@/components/ui';
 import {
 	COMMUNITY_TWEET_EMBEDS,
 	COMMUNITY_TWEET_MOSAIC_MAX,
@@ -69,10 +70,12 @@ export default function CommunityTweets() {
 			transition={{ duration: 0.4 }}
 			className="mb-12 md:mb-16"
 		>
-			<p className="text-sm uppercase tracking-wider text-cursor-text-muted font-medium mb-2">
+			<p className="text-xs uppercase tracking-wider text-cursor-text-muted font-medium mb-2">
 				{t('home.communityTweets')}
 			</p>
-			<h2 className="text-2xl md:text-3xl font-bold text-cursor-text mb-6">{t('home.communityTweetsHeading')}</h2>
+			<h2 className="text-2xl md:text-3xl font-normal tracking-tight text-cursor-text mb-6">
+				{t('home.communityTweetsHeading')}
+			</h2>
 
 			{visibleEmbeds.length > 0 && (
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
@@ -84,23 +87,19 @@ export default function CommunityTweets() {
 
 			<div className="mt-6 flex flex-wrap items-center justify-center gap-3">
 				{canLoadMore && (
-					<button
+					<Button
 						type="button"
+						variant="secondary"
+						size="md"
 						onClick={() => setVisibleCount((count) => Math.min(count + COMMUNITY_TWEET_PAGE_SIZE, mosaicPool.length))}
-						className="rounded-md border border-cursor-border bg-cursor-bg-dark px-5 py-2.5 text-sm font-medium text-cursor-text-secondary transition-colors hover:border-cursor-border-emphasis hover:text-cursor-text"
 					>
 						{t('home.communityTweetsLoadMore')}
-					</button>
+					</Button>
 				)}
-				<a
-					href={communityTweetsOnXHref()}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="inline-flex items-center gap-2 rounded-md border border-cursor-border bg-cursor-bg-dark px-5 py-2.5 text-sm font-medium text-cursor-text-secondary transition-colors hover:border-cursor-border-emphasis hover:text-cursor-text"
-				>
+				<Button href={communityTweetsOnXHref()} external variant="secondary" size="md">
 					{t('home.communityTweetsBrowseX')}
 					<ExternalLink className="w-3.5 h-3.5 opacity-60" />
-				</a>
+				</Button>
 			</div>
 		</motion.section>
 	);

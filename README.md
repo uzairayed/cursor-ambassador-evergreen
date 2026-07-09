@@ -24,6 +24,7 @@ Open `http://localhost:3000`.
 
 ### Core components
 
+- `components/ui/`: portable Cursor marketing primitives (`Button`, `Badge`, `TextLink`, card styles). See `docs/ui-kit.md`.
 - `components/HeroHeaderServer.tsx`: server-side daily photo shuffle into fixed bento slots.
 - `components/BentoGrid.tsx`: hero bento grid with tile washes and click-to-expand.
 - `components/CommunityTweets.tsx`: optional curated X/Twitter mosaic (`react-tweet`).
@@ -184,7 +185,7 @@ pnpm typecheck                   # TypeScript only
 
 ## Changelog
 
-See [`CHANGELOG.md`](CHANGELOG.md) for version history (current: **0.3.0**).
+See [`CHANGELOG.md`](CHANGELOG.md) for version history (current: **0.3.1**).
 
 ## Image Strategy
 

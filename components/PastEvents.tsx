@@ -4,9 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, Users, ArrowRight } from 'lucide-react';
+import { Calendar, Users } from 'lucide-react';
 import { pastEvents } from '@/content/events';
 import { useI18n } from '@/lib/i18n';
+import { cardInteractive } from '@/components/ui';
 
 const containerVariants = {
 	hidden: {},
@@ -35,7 +36,9 @@ const PastEvents: React.FC = () => {
 			className="mb-16 scroll-mt-20"
 		>
 			<p className="text-xs uppercase tracking-wider text-cursor-text-muted font-medium mb-2">{t('home.pastEvents')}</p>
-			<h2 className="text-2xl md:text-3xl font-bold text-cursor-text mb-6">{t('home.pastEventsHeading')}</h2>
+			<h2 className="text-2xl md:text-3xl font-normal tracking-tight text-cursor-text mb-6">
+				{t('home.pastEventsHeading')}
+			</h2>
 
 			<motion.div
 				variants={containerVariants}
@@ -52,9 +55,7 @@ const PastEvents: React.FC = () => {
 					return (
 						<motion.div key={event.id} variants={itemVariants}>
 							<Link href={event.recapPath} className="block group">
-								<div className="relative bg-cursor-surface border border-cursor-border rounded-none sm:rounded-md overflow-hidden transition-all duration-300 hover:border-cursor-accent-orange/50 hover:shadow-[0_0_30px_rgba(245,78,0,0.12)]">
-									{/* Glow backdrop */}
-									<div className="pointer-events-none absolute -inset-px sm:rounded-md bg-[radial-gradient(ellipse_at_bottom,rgba(245,78,0,0.06),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+								<div className={`${cardInteractive} rounded-none sm:rounded-md`}>
 									{event.thumbnail ? (
 										<div className="relative">
 											<div className={`aspect-[2/1] overflow-hidden ${hasGallery ? 'grid grid-cols-3 gap-1' : ''}`}>
@@ -109,9 +110,14 @@ const PastEvents: React.FC = () => {
 												</div>
 											) : null}
 										</div>
-										<div className="flex items-center gap-2 text-sm text-cursor-accent-orange">
+										<div className="flex items-center gap-1 text-sm text-cursor-accent-orange">
 											<span>{t('home.viewRecap')}</span>
-											<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200 ease-out" />
+											<span
+												className="translate-y-px group-hover:translate-x-0.5 transition-transform duration-200"
+												aria-hidden="true"
+											>
+												→
+											</span>
 										</div>
 									</div>
 								</div>

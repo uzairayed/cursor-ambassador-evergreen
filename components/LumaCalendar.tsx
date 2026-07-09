@@ -21,7 +21,9 @@ const LumaCalendarSection: React.FC<LumaCalendarSectionProps> = ({ className, he
 			<p className="text-xs uppercase tracking-wider text-cursor-text-muted font-medium mb-2">
 				{t('home.lumaCalendar')}
 			</p>
-			<h2 className="text-2xl md:text-3xl font-bold text-cursor-text mb-6">{t('home.lumaCalendarHeading')}</h2>
+			<h2 className="text-2xl md:text-3xl font-normal tracking-tight text-cursor-text mb-6">
+				{t('home.lumaCalendarHeading')}
+			</h2>
 			<div className="rounded-md border border-cursor-border overflow-hidden bg-cursor-surface">
 				<iframe
 					src={siteConfig.lumaCalendarEmbedUrl}

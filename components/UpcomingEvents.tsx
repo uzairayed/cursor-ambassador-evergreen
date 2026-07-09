@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
 import { upcomingEvents } from '@/content/events';
 import { useI18n } from '@/lib/i18n';
+import { Badge, Button, TextLink, cardFeatured } from '@/components/ui';
 
 const UpcomingEvents: React.FC = () => {
 	const { t } = useI18n();
@@ -28,16 +28,17 @@ const UpcomingEvents: React.FC = () => {
 			<p className="text-xs uppercase tracking-wider text-cursor-text-muted font-medium mb-2">
 				{t('home.upcomingEvents')}
 			</p>
-			<h2 className="text-2xl md:text-3xl font-bold text-cursor-text mb-6">{t('home.upcomingHeading')}</h2>
+			<h2 className="text-2xl md:text-3xl font-normal tracking-tight text-cursor-text mb-6">
+				{t('home.upcomingHeading')}
+			</h2>
 
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true, margin: '-50px' }}
 				transition={{ duration: 0.4 }}
-				className="relative overflow-hidden bg-cursor-surface border border-cursor-border border-l-2 border-l-cursor-accent-blue rounded-md p-5 mb-6"
+				className={`${cardFeatured} p-5 mb-6`}
 			>
-				<div className="pointer-events-none absolute -inset-px rounded-md bg-[radial-gradient(ellipse_at_bottom_left,rgba(168,180,200,0.06),transparent_60%)]" />
 				<div className="flex items-center gap-2 text-sm text-cursor-text-muted mb-2">
 					<span className="relative flex h-2.5 w-2.5">
 						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cursor-accent-blue opacity-75" />
@@ -47,21 +48,13 @@ const UpcomingEvents: React.FC = () => {
 					<span className="text-cursor-text-faint">&middot;</span>
 					<span>{city}</span>
 				</div>
-				<h3 className="text-2xl font-bold text-cursor-text mb-3">{featured.title}</h3>
+				<h3 className="text-2xl font-normal tracking-tight text-cursor-text mb-3">{featured.title}</h3>
 				{featured.lumaUrl ? (
-					<a
-						href={featured.lumaUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 bg-cursor-accent-orange text-white rounded-md px-5 py-2.5 text-sm font-medium hover:bg-cursor-accent-orange-hover transition-colors"
-					>
+					<Button href={featured.lumaUrl} external variant="accent" size="md">
 						{t('home.register')}
-						<ExternalLink className="w-3.5 h-3.5" />
-					</a>
+					</Button>
 				) : (
-					<span className="inline-flex items-center rounded-md border border-cursor-border bg-cursor-overlay px-3 py-1.5 text-sm text-cursor-text-muted">
-						{t('home.comingSoon')}
-					</span>
+					<Badge variant="neutral">{t('home.comingSoon')}</Badge>
 				)}
 			</motion.div>
 
@@ -90,15 +83,9 @@ const UpcomingEvents: React.FC = () => {
 											{event.lumaUrl ? (
 												<>
 													<span className="text-cursor-text-faint">&middot;</span>
-													<a
-														href={event.lumaUrl}
-														target="_blank"
-														rel="noopener noreferrer"
-														className="text-xs text-cursor-accent-orange hover:text-cursor-accent-orange-hover transition-colors inline-flex items-center gap-1"
-													>
+													<TextLink href={event.lumaUrl} external className="text-xs">
 														{t('home.register')}
-														<ExternalLink className="w-3 h-3" />
-													</a>
+													</TextLink>
 												</>
 											) : (
 												<>

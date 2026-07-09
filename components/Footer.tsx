@@ -8,6 +8,7 @@ import { useI18n } from '@/lib/i18n';
 import { siteConfig } from '@/content/site.config';
 import { upcomingEvents } from '@/content/events';
 import Partners from '@/components/Partners';
+import { Button, TextLink } from '@/components/ui';
 
 const Footer: React.FC = () => {
 	const { t } = useI18n();
@@ -36,45 +37,24 @@ const Footer: React.FC = () => {
 				</div>
 
 				<div className="flex flex-col gap-2.5">
-					<a
-						href={siteConfig.lumaUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-sm text-cursor-text-secondary hover:text-cursor-text transition-colors inline-flex items-center gap-1.5"
-					>
+					<TextLink href={siteConfig.lumaUrl} external muted caret={false}>
 						{t('footer.allEvents')}
 						<ExternalLink className="w-3 h-3" />
-					</a>
-					<a
-						href={siteConfig.cursorCommunityUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-sm text-cursor-text-secondary hover:text-cursor-text transition-colors inline-flex items-center gap-1.5"
-					>
+					</TextLink>
+					<TextLink href={siteConfig.cursorCommunityUrl} external muted caret={false}>
 						{t('footer.community')}
 						<ExternalLink className="w-3 h-3" />
-					</a>
-					<a
-						href="https://x.com/cursor_ai"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-sm text-cursor-text-secondary hover:text-cursor-text transition-colors inline-flex items-center gap-1.5"
-					>
+					</TextLink>
+					<TextLink href="https://x.com/cursor_ai" external muted caret={false}>
 						{t('footer.followUs')}
 						<ExternalLink className="w-3 h-3" />
-					</a>
+					</TextLink>
 				</div>
 
 				<div className="md:text-right">
-					<a
-						href={joinUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 px-5 py-2.5 bg-cursor-accent-orange text-white rounded-md hover:bg-cursor-accent-orange-hover transition-colors text-sm font-medium"
-					>
+					<Button href={joinUrl} external variant="primary" size="md">
 						{t('footer.joinNext')}
-						<ExternalLink className="w-3.5 h-3.5" />
-					</a>
+					</Button>
 				</div>
 			</div>
 

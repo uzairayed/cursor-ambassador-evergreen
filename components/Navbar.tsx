@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import LanguageToggle from '@/components/LanguageToggle';
+import { Button } from '@/components/ui';
 import { siteConfig } from '@/content/site.config';
 
 const NAV_LINKS = [
@@ -101,14 +102,9 @@ export default function Navbar() {
 								</Link>
 							);
 						})}
-						<a
-							href={siteConfig.lumaUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-sm font-medium px-3.5 py-1.5 rounded-md bg-cursor-accent-orange text-white hover:bg-cursor-accent-orange-hover transition-colors"
-						>
+						<Button href={siteConfig.lumaUrl} external variant="primary" size="sm">
 							{t('nav.joinUs')}
-						</a>
+						</Button>
 						<LanguageToggle />
 					</div>
 
@@ -138,15 +134,9 @@ export default function Navbar() {
 								{t(key)}
 							</Link>
 						))}
-						<a
-							href={siteConfig.lumaUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							onClick={closeMobile}
-							className="text-base font-medium px-5 py-2.5 rounded-md bg-cursor-accent-orange text-white hover:bg-cursor-accent-orange-hover transition-colors"
-						>
+						<Button href={siteConfig.lumaUrl} external variant="primary" size="lg" onClick={closeMobile}>
 							{t('nav.joinUs')}
-						</a>
+						</Button>
 					</div>
 				</div>
 			)}

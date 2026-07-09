@@ -4,6 +4,18 @@ All notable changes to this template are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.1] - 2026-07-10
+
+### Added
+
+- Portable `components/ui` kit: pill `Button` (`primary` / `accent` / `secondary` / `ghost`), `Badge`, `TextLink`, flat `card-*` styles — see `docs/ui-kit.md` for Thailand port steps
+
+### Changed
+
+- CTAs use dark primary pills; orange reserved for Register / live actions
+- Card hovers are hairline border only (no colored glow washes)
+- Section headings use `font-normal tracking-tight` (Cursor display voice)
+
 ## [0.3.0] - 2026-07-09
 
 ### Added

@@ -2,10 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { featuredResource } from '@/content/featured';
 import { useI18n } from '@/lib/i18n';
+import { Button, cardInteractive } from '@/components/ui';
 
 const FeaturedSection: React.FC = () => {
 	const { t } = useI18n();
@@ -17,25 +16,20 @@ const FeaturedSection: React.FC = () => {
 			transition={{ duration: 0.5, delay: 0.2 }}
 			className="mb-16"
 		>
-			<div className="relative overflow-hidden bg-cursor-surface border border-cursor-border rounded-md p-6 transition-all duration-300 hover:border-cursor-accent-blue/40 hover:shadow-[0_0_30px_rgba(168,180,200,0.08)] group">
-				{/* Glow backdrop */}
-				<div className="pointer-events-none absolute -inset-px rounded-md bg-[radial-gradient(ellipse_at_top_right,rgba(168,180,200,0.08),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+			<div className={`${cardInteractive} p-6 group`}>
 				<p className="text-xs uppercase tracking-wider text-cursor-text-muted mb-4">{t('home.featured')}</p>
 
-				<h2 className="text-3xl md:text-4xl font-bold tracking-tight text-cursor-text mb-1">
+				<h2 className="text-3xl md:text-4xl font-normal tracking-tight text-cursor-text mb-1">
 					{featuredResource.title}
 				</h2>
 				<p className="text-cursor-text-muted leading-relaxed mb-6">
 					{featuredResource.description || t('featured.defaultDescription')}
 				</p>
 
-				<Link
-					href={featuredResource.href}
-					className="inline-flex items-center gap-2 px-4 py-2 bg-cursor-accent-orange text-white rounded-md hover:bg-cursor-accent-orange-hover transition-colors text-sm font-medium"
-				>
+				<Button href={featuredResource.href} variant="primary" size="md">
 					{featuredResource.ctaLabel || t('home.viewSlides')}
-					<ArrowRight className="w-4 h-4" />
-				</Link>
+					<span aria-hidden="true">→</span>
+				</Button>
 			</div>
 		</motion.section>
 	);
