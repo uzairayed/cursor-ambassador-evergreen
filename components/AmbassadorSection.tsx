@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Globe, Linkedin } from 'lucide-react';
 import { siGithub, siX } from 'simple-icons';
@@ -41,22 +40,12 @@ const AmbassadorSection: React.FC = () => {
 	}
 
 	return (
-		<motion.section
-			initial={{ opacity: 0, y: 20 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true, margin: '-50px' }}
-			transition={{ duration: 0.5 }}
-			className="mb-16"
-		>
-			<p className="text-xs uppercase tracking-wider text-cursor-text-muted font-medium mb-2">
-				{t('ambassadors.title', { communityName: siteConfig.communityName })}
-			</p>
-			<h2 className="text-2xl md:text-3xl font-normal tracking-tight text-cursor-text mb-6">
-				{t('ambassadors.heading')}
-			</h2>
+		<section id="community" className="mb-20 scroll-mt-20">
+			<p className="cursor-eyebrow mb-2">{t('ambassadors.title', { communityName: siteConfig.communityName })}</p>
+			<h2 className="cursor-section-title mb-8 text-cursor-text">{t('ambassadors.heading')}</h2>
 
-			<div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-				{ambassadors.map((ambassador, index) => {
+			<div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+				{ambassadors.map((ambassador) => {
 					const links = [
 						{ kind: 'x' as const, href: ambassador.links.x },
 						{ kind: 'linkedin' as const, href: ambassador.links.linkedin },
@@ -65,23 +54,10 @@ const AmbassadorSection: React.FC = () => {
 					].filter((entry) => Boolean(entry.href));
 
 					return (
-						<motion.article
-							key={ambassador.name}
-							initial={{ opacity: 0, y: 10 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true, margin: '-50px' }}
-							transition={{ duration: 0.3, delay: index * 0.07 }}
-							className={`${cardTile} p-5 group`}
-						>
+						<article key={ambassador.name} className={`${cardTile} p-5 group`}>
 							<div className="flex items-center gap-4">
 								<div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-cursor-border-emphasis">
-									<Image
-										src={ambassador.photo}
-										alt={ambassador.name}
-										fill
-										className="object-cover grayscale group-hover:grayscale-0 transition duration-500"
-										sizes="80px"
-									/>
+									<Image src={ambassador.photo} alt={ambassador.name} fill className="object-cover" sizes="80px" />
 								</div>
 								<div>
 									<p className="text-cursor-text font-medium">{ambassador.name}</p>
@@ -105,11 +81,11 @@ const AmbassadorSection: React.FC = () => {
 									))}
 								</div>
 							) : null}
-						</motion.article>
+						</article>
 					);
 				})}
 			</div>
-		</motion.section>
+		</section>
 	);
 };
 

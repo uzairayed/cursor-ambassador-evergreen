@@ -18,18 +18,21 @@ Open `http://localhost:3000`.
 
 ### App routes
 
-- `app/page.tsx`: homepage (hero, ambassadors, featured, upcoming/past events, optional community tweets, optional Luma calendar, world events, footer).
+- `app/page.tsx`: homepage on the shared 24-column marketing grid.
 - `app/recaps/[slug]/page.tsx`: dynamic recap page route.
 - `app/slides/[id]/page.tsx`: optional workshop slides route.
 
 ### Core components
 
 - `components/ui/`: portable Cursor marketing primitives (`Button`, `Badge`, `TextLink`, card styles). See `docs/ui-kit.md`.
+- `components/layout/MarketingGrid.tsx`: 1300px / 24-column page shell with reusable content spans.
 - `components/HeroHeaderServer.tsx`: server-side daily photo shuffle into fixed bento slots.
-- `components/BentoGrid.tsx`: hero bento grid with tile washes and click-to-expand.
+- `components/HeroHeader.tsx`: full-viewport editorial hero over the bento.
+- `components/BentoGrid.tsx`: clean photo grid with click-to-expand.
 - `components/CommunityTweets.tsx`: optional curated X/Twitter mosaic (`react-tweet`).
 - `components/FeaturedSection.tsx`: featured resource card.
-- `components/UpcomingEvents.tsx` and `components/PastEvents.tsx`: event lists.
+- `components/UpcomingEvents.tsx`: date-grouped event index.
+- `components/PastEvents.tsx`: editorial recap index.
 - `components/LumaCalendar.tsx`: optional embedded Luma calendar section.
 - `components/AmbassadorSection.tsx`: ambassador cards.
 - `components/Partners.tsx`: hosting partner cards/logos.
@@ -75,7 +78,11 @@ Images shuffle once per day (seeded by date + community name) into fixed slots o
 
 Add at least as many images as slots (7 on desktop). Run `pnpm validate:bento` after editing slots.
 
-Each tile has a subtle accent wash and can expand to full-bleed on click (Escape or second click collapses). The daily shuffle is unchanged — interaction is client-side only.
+The bento occupies the full hero viewport. Editorial copy and CTAs sit over a neutral legibility gradient; photos have no colored wash. Each tile can expand to full-bleed on click (Escape or second click collapses). The daily shuffle remains server-owned.
+
+### Automatic themes
+
+Marketing and recap surfaces follow `prefers-color-scheme`: warm off-white in light mode and espresso in dark mode. Semantic `cursor-*` tokens live in `app/globals.css`; components should not add raw page colors.
 
 ### 3) Community tweets (optional)
 

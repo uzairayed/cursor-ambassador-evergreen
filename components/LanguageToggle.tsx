@@ -13,7 +13,7 @@ const LanguageToggle: React.FC = () => {
 	}
 
 	return (
-		<div className="flex items-center gap-1 rounded-full border border-cursor-border bg-cursor-bg-dark p-0.5">
+		<div className="flex items-center gap-1 rounded-full border border-cursor-border bg-cursor-surface p-0.5">
 			{siteConfig.locales.map((localeCode) => (
 				<button
 					key={localeCode}
@@ -21,7 +21,9 @@ const LanguageToggle: React.FC = () => {
 					onClick={() => setLocale(localeCode)}
 					className={cn(
 						'rounded-full px-3 py-1 text-sm font-medium transition-colors',
-						locale === localeCode ? 'bg-cursor-text text-cursor-bg' : 'text-cursor-text-muted hover:text-cursor-text',
+						locale === localeCode
+							? 'bg-cursor-action text-cursor-action-text'
+							: 'text-cursor-text-muted hover:text-cursor-text',
 					)}
 				>
 					{localeCode.toUpperCase()}

@@ -4,6 +4,22 @@ All notable changes to this template are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- Shared 1300px / 24-column marketing grid with wide, reading, and prose spans
+- Automatic warm-light and espresso-dark themes using semantic CSS tokens
+- Editorial hero copy and CTAs over the full-viewport daily-seeded bento
+- Date-grouped upcoming event index
+
+### Changed
+
+- Navigation and footer use compact global chrome aligned to the marketing grid
+- Photography renders without colored tile washes or routine entrance animation
+- Typography, surfaces, buttons, links, recaps, and optional sections use shared semantic tokens
+- External text links use `↗`; internal links use `→`
+
 ## [0.3.2] - 2026-07-10
 
 ### Added

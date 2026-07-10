@@ -15,6 +15,7 @@ import LumaCalendarSection from '@/components/LumaCalendar';
 import CommunityTweetsSection from '@/components/CommunityTweetsSection';
 import { siteConfig } from '@/content/site.config';
 import { upcomingEvents } from '@/content/events';
+import { MarketingColumn, MarketingGrid } from '@/components/layout/MarketingGrid';
 
 function buildHomeJsonLd() {
 	const org = {
@@ -45,43 +46,88 @@ function buildHomeJsonLd() {
 	};
 }
 
+type GridSectionProps = {
+	children: React.ReactNode;
+	width?: 'full' | 'wide' | 'reading' | 'prose';
+};
+
+function GridSection({ children, width = 'wide' }: GridSectionProps) {
+	return (
+		<MarketingGrid>
+			<MarketingColumn width={width}>{children}</MarketingColumn>
+		</MarketingGrid>
+	);
+}
+
 const Home: React.FC = () => (
-	<main className="min-h-screen bg-cursor-bg text-cursor-text scroll-smooth">
+	<main className="min-h-screen scroll-smooth bg-cursor-bg text-cursor-text">
 		<JsonLd data={buildHomeJsonLd()} />
 		<Navbar />
 		<HeroHeaderServer />
 
-		<div className="max-w-5xl mx-auto px-6 py-16 md:py-24">
-			<AmbassadorSection />
-			<SectionDivider />
-			<FeaturedSection />
-			<SectionDivider />
-			<UpcomingEvents />
+		<div className="py-20 md:py-28">
+			<GridSection>
+				<AmbassadorSection />
+			</GridSection>
+			<GridSection>
+				<SectionDivider />
+			</GridSection>
+			<GridSection width="reading">
+				<FeaturedSection />
+			</GridSection>
+			<GridSection>
+				<SectionDivider />
+			</GridSection>
+			<GridSection>
+				<UpcomingEvents />
+			</GridSection>
 			{siteConfig.sections.matchmaking ? (
 				<>
-					<MatchmakingSection />
-					<SectionDivider />
+					<GridSection width="reading">
+						<MatchmakingSection />
+					</GridSection>
+					<GridSection>
+						<SectionDivider />
+					</GridSection>
 				</>
 			) : null}
 			{siteConfig.sections.photoDisclaimer ? (
 				<>
-					<PhotoDisclaimer />
-					<SectionDivider />
+					<GridSection width="reading">
+						<PhotoDisclaimer />
+					</GridSection>
+					<GridSection>
+						<SectionDivider />
+					</GridSection>
 				</>
 			) : null}
-			<LumaCalendarSection />
-			<SectionDivider />
-			<PastEvents />
+			<GridSection>
+				<LumaCalendarSection />
+			</GridSection>
+			<GridSection>
+				<SectionDivider />
+			</GridSection>
+			<GridSection>
+				<PastEvents />
+			</GridSection>
 			{siteConfig.sections.communityTweets ? (
 				<>
-					<SectionDivider />
-					<CommunityTweetsSection />
+					<GridSection>
+						<SectionDivider />
+					</GridSection>
+					<GridSection>
+						<CommunityTweetsSection />
+					</GridSection>
 				</>
 			) : null}
-			<SectionDivider />
-			<GlobalEvents />
-			<Footer />
+			<GridSection>
+				<SectionDivider />
+			</GridSection>
+			<GridSection>
+				<GlobalEvents />
+			</GridSection>
 		</div>
+		<Footer />
 	</main>
 );
 

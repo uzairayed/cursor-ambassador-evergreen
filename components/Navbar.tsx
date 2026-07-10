@@ -7,11 +7,13 @@ import { Menu, X } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import LanguageToggle from '@/components/LanguageToggle';
 import { Button } from '@/components/ui';
+import { MarketingColumn, MarketingGrid } from '@/components/layout/MarketingGrid';
 import { siteConfig } from '@/content/site.config';
 
 const NAV_LINKS = [
-	{ href: '/#upcoming', sectionId: 'upcoming', key: 'home.upcomingEvents' },
-	{ href: '/#recaps', sectionId: 'recaps', key: 'home.pastEvents' },
+	{ href: '/#community', sectionId: 'community', key: 'nav.community' },
+	{ href: '/#events', sectionId: 'events', key: 'nav.events' },
+	{ href: '/#recaps', sectionId: 'recaps', key: 'nav.recaps' },
 ] as const;
 
 function useScrollState() {
@@ -22,7 +24,7 @@ function useScrollState() {
 		const handleScroll = () => {
 			setScrolled(window.scrollY > 20);
 
-			const sections = ['upcoming', 'recaps'];
+			const sections = ['community', 'events', 'recaps'];
 			let current: string | null = null;
 			for (const id of sections) {
 				const el = document.getElementById(id);
@@ -68,61 +70,68 @@ export default function Navbar() {
 	return (
 		<>
 			<nav
-				className={`sticky top-0 z-40 transition-all duration-300 ${
+				className={`sticky top-0 z-40 transition-colors duration-150 ${
 					scrolled
-						? 'bg-cursor-bg/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.4)] border-b border-cursor-border'
-						: 'bg-cursor-bg/80 backdrop-blur-md border-b border-transparent'
+						? 'border-b border-cursor-border bg-cursor-bg/95 backdrop-blur-md'
+						: 'border-b border-transparent bg-cursor-bg'
 				}`}
 			>
-				<div className="flex justify-between items-center px-6 md:px-12 lg:px-16 h-14">
-					<Link href="/" className="flex items-center gap-3">
-						<Image src="/cursor-logo.svg" alt="Cursor" width={120} height={32} priority className="h-6 md:h-8 w-auto" />
-						<span className="font-cursor text-lg md:text-xl font-semibold tracking-tight text-cursor-text">
-							{siteConfig.communityName}
-							{siteConfig.communityNameLocal ? (
-								<span className="font-thai font-bold tracking-wide text-xl md:text-2xl text-cursor-text-secondary ml-2">
-									{siteConfig.communityNameLocal}
-								</span>
-							) : null}
-						</span>
-					</Link>
+				<MarketingGrid className="h-[52px] items-center">
+					<MarketingColumn width="full" className="flex items-center justify-between gap-5">
+						<Link href="/" className="flex items-center gap-2.5">
+							<Image
+								src="/cursor-logo.svg"
+								alt="Cursor"
+								width={120}
+								height={32}
+								priority
+								className="cursor-wordmark h-6 w-auto"
+							/>
+							<span className="hidden text-sm font-normal text-cursor-text-secondary md:inline">
+								{siteConfig.communityNameLocal}
+							</span>
+						</Link>
 
-					<div className="hidden sm:flex items-center gap-6">
-						{NAV_LINKS.map(({ href, sectionId, key }) => {
-							const isActive = activeSection === sectionId;
-							return (
-								<Link
-									key={href}
-									href={href}
-									className={`text-sm transition-colors ${
-										isActive ? 'text-cursor-text font-medium' : 'text-cursor-text-muted hover:text-cursor-text'
-									}`}
-								>
-									{t(key)}
-								</Link>
-							);
-						})}
-						<Button href={siteConfig.lumaUrl} external variant="primary" size="sm">
-							{t('nav.joinUs')}
-						</Button>
-						<LanguageToggle />
-					</div>
+						<div className="hidden items-center gap-6 sm:flex">
+							{NAV_LINKS.map(({ href, sectionId, key }) => {
+								const isActive = activeSection === sectionId;
+								return (
+									<Link
+										key={href}
+										href={href}
+										className={`text-sm transition-colors duration-150 ${
+											isActive ? 'text-cursor-text' : 'text-cursor-text-muted hover:text-cursor-text'
+										}`}
+									>
+										{t(key)}
+									</Link>
+								);
+							})}
+							<LanguageToggle />
+							<Button href={siteConfig.lumaUrl} external variant="primary" size="sm">
+								{t('nav.joinUs')}
+							</Button>
+						</div>
 
-					<div className="flex sm:hidden items-center gap-3">
-						<LanguageToggle />
-						<button
-							onClick={() => setMobileOpen(!mobileOpen)}
-							className="p-1.5 text-cursor-text-muted hover:text-cursor-text transition-colors"
-							aria-label="Toggle menu"
-						>
-							{mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-						</button>
-					</div>
-				</div>
+						<div className="flex items-center gap-2 sm:hidden">
+							<Button href={siteConfig.lumaUrl} external variant="primary" size="sm">
+								{t('nav.joinUs')}
+							</Button>
+							<button
+								onClick={() => setMobileOpen(!mobileOpen)}
+								className="flex h-8 w-8 items-center justify-center rounded-full text-cursor-text-muted transition-colors duration-150 hover:bg-cursor-surface hover:text-cursor-text"
+								aria-label="Toggle menu"
+								aria-expanded={mobileOpen}
+							>
+								{mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+							</button>
+						</div>
+					</MarketingColumn>
+				</MarketingGrid>
 			</nav>
 
 			{mobileOpen && (
-				<div className="fixed inset-0 top-14 z-30 bg-cursor-bg/95 backdrop-blur-md sm:hidden">
+				<div className="fixed inset-0 top-[52px] z-30 border-t border-cursor-border bg-cursor-bg sm:hidden">
 					<div className="flex flex-col items-center gap-6 pt-12">
 						{NAV_LINKS.map(({ href, key }) => (
 							<Link
@@ -134,9 +143,7 @@ export default function Navbar() {
 								{t(key)}
 							</Link>
 						))}
-						<Button href={siteConfig.lumaUrl} external variant="primary" size="lg" onClick={closeMobile}>
-							{t('nav.joinUs')}
-						</Button>
+						<LanguageToggle />
 					</div>
 				</div>
 			)}

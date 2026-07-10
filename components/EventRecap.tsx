@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Mic, Lightbulb, MessageSquareQuote, Link as LinkIcon } from 'lucide-react';
 import PhotoGallery from '@/components/PhotoGallery';
@@ -16,14 +15,9 @@ const EventRecap: React.FC<EventRecapProps> = ({ recap }) => {
 	const { t } = useI18n();
 
 	return (
-		<motion.section
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.5 }}
-			className="mb-8"
-		>
-			<div className="bg-[#1B1913] border border-cursor-border rounded-lg p-8">
-				<h2 className="text-xl font-semibold text-cursor-text mb-2">{recap.title}</h2>
+		<section className="mb-8">
+			<div className="rounded-sm border border-cursor-border bg-cursor-surface p-6 md:p-8">
+				<h1 className="cursor-section-title mb-2 text-cursor-text">{recap.title}</h1>
 				<p className="text-cursor-text-muted text-sm mb-6">{recap.date}</p>
 
 				{recap.host ? (
@@ -198,7 +192,7 @@ const EventRecap: React.FC<EventRecapProps> = ({ recap }) => {
 					</div>
 				) : null}
 			</div>
-		</motion.section>
+		</section>
 	);
 };
 

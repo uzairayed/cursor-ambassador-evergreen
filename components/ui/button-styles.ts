@@ -10,7 +10,7 @@
  */
 
 export const buttonBase =
-	'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cursor-accent-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cursor-bg disabled:opacity-50 disabled:pointer-events-none';
+	'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cursor-accent-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cursor-bg disabled:opacity-50 disabled:pointer-events-none';
 
 export const buttonSizes = {
 	sm: 'px-3.5 py-1.5 text-sm',
@@ -19,10 +19,10 @@ export const buttonSizes = {
 } as const;
 
 export const buttonVariants = {
-	primary: 'bg-cursor-text text-cursor-bg hover:bg-cursor-text-secondary',
+	primary: 'bg-cursor-action text-cursor-action-text hover:bg-cursor-action-hover',
 	accent: 'bg-cursor-accent-orange text-white hover:bg-cursor-accent-orange-hover',
 	secondary:
-		'border border-cursor-border bg-cursor-bg-dark text-cursor-text-secondary hover:border-cursor-border-emphasis hover:text-cursor-text',
+		'border border-cursor-border bg-cursor-surface text-cursor-text-secondary hover:bg-cursor-surface-raised hover:border-cursor-border-emphasis hover:text-cursor-text',
 	ghost: 'text-cursor-text-muted hover:text-cursor-text',
 } as const;
 

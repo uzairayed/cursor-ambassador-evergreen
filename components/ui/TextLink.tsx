@@ -6,7 +6,7 @@ import { cn } from './cn';
 type TextLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'className'> & {
 	href: string;
 	children: ReactNode;
-	/** Show trailing → caret (default true) */
+	/** Show trailing directional glyph (→ internal, ↗ external; default true) */
 	caret?: boolean;
 	/** Muted secondary style instead of orange accent */
 	muted?: boolean;
@@ -29,7 +29,7 @@ export function TextLink({
 			{children}
 			{caret ? (
 				<span className={textLinkCaret} aria-hidden="true">
-					→
+					{external ? '↗' : '→'}
 				</span>
 			) : null}
 		</>

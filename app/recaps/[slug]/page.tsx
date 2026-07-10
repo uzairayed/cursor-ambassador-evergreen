@@ -6,6 +6,8 @@ import Navbar from '@/components/Navbar';
 import RecapBackLink from '@/components/RecapBackLink';
 import { recapsBySlug } from '@/content/recaps';
 import { siteConfig } from '@/content/site.config';
+import Footer from '@/components/Footer';
+import { MarketingColumn, MarketingGrid } from '@/components/layout/MarketingGrid';
 
 interface RecapPageProps {
 	params: Promise<{ slug: string }>;
@@ -76,10 +78,13 @@ export default async function RecapPage({ params }: RecapPageProps) {
 		<main className="min-h-screen bg-cursor-bg text-cursor-text">
 			{jsonLd && <JsonLd data={jsonLd} />}
 			<Navbar />
-			<div className="max-w-5xl mx-auto px-6 py-12">
-				<RecapBackLink />
-				<EventRecap recap={recap} />
-			</div>
+			<MarketingGrid className="py-12 md:py-20">
+				<MarketingColumn width="reading">
+					<RecapBackLink />
+					<EventRecap recap={recap} />
+				</MarketingColumn>
+			</MarketingGrid>
+			<Footer />
 		</main>
 	);
 }

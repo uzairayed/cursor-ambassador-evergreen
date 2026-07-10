@@ -4,12 +4,12 @@ Reusable workshop slide chrome. **No community-specific workshop content** — o
 
 ## Routes
 
-| URL | Behavior |
-| --- | --- |
-| `/slides` | Canonical shareable entry (slide 1) |
-| `/slides/2` … `/slides/N` | Numbered slides |
-| `/slides/1` | Redirects → `/slides` |
-| `/slides/XX` (invalid) | Redirects → `/slides` |
+| URL                       | Behavior                            |
+| ------------------------- | ----------------------------------- |
+| `/slides`                 | Canonical shareable entry (slide 1) |
+| `/slides/2` … `/slides/N` | Numbered slides                     |
+| `/slides/1`               | Redirects → `/slides`               |
+| `/slides/XX` (invalid)    | Redirects → `/slides`               |
 
 Set `content/featured.ts` `href` to `/slides` (not `/slides/1`).
 
@@ -22,14 +22,14 @@ Set `content/featured.ts` `href` to `/slides` (not `/slides/1`).
 
 ## Components
 
-| File | Role |
-| --- | --- |
-| `SlideLayout.tsx` | Keyboard + prev/next; title-slide chrome; `entryPath` / `slidePath` |
-| `SlideContent.tsx` | Renders React or sanitized HTML |
-| `primitives.tsx` | `SlideTitle`, `SlideBody`, `SlideGrid`, `SlideCallout`, `SlideListItem`, `SlideFootnote`, `TitleCard` |
-| `CodeBlock.tsx` | Copyable code (CursorGothic) |
-| `PromptBlock.tsx` | Copyable prompt |
-| `DiagramSlide.tsx` | Inline SVG + injects CursorGothic `@font-face` |
+| File               | Role                                                                                                  |
+| ------------------ | ----------------------------------------------------------------------------------------------------- |
+| `SlideLayout.tsx`  | Keyboard + prev/next; title-slide chrome; `entryPath` / `slidePath`                                   |
+| `SlideContent.tsx` | Renders React or sanitized HTML                                                                       |
+| `primitives.tsx`   | `SlideTitle`, `SlideBody`, `SlideGrid`, `SlideCallout`, `SlideListItem`, `SlideFootnote`, `TitleCard` |
+| `CodeBlock.tsx`    | Copyable code (CursorGothic)                                                                          |
+| `PromptBlock.tsx`  | Copyable prompt                                                                                       |
+| `DiagramSlide.tsx` | Inline SVG + injects CursorGothic `@font-face`                                                        |
 
 ## Diagrams
 

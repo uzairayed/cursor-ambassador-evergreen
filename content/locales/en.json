@@ -1,8 +1,16 @@
 {
 	"nav": {
+		"community": "Community",
+		"events": "Events",
+		"recaps": "Recaps",
 		"joinUs": "Join us"
 	},
 	"home": {
+		"heroEyebrow": "Cursor Community · {city}",
+		"heroHeading": "Build with Cursor, together.",
+		"heroDescription": "Meet local builders, learn practical workflows, and make ambitious software with people nearby.",
+		"exploreEvents": "See upcoming events",
+		"joinCommunity": "Join on Luma",
 		"featured": "Featured",
 		"upcomingEvents": "Upcoming Events",
 		"upcomingHeading": "What's Next",
@@ -34,7 +42,7 @@
 		"followUs": "Follow Cursor on X"
 	},
 	"featured": {
-		"defaultDescription": "A practical, hands-on workshop series for builders who want to learn Cursor with real workflows."
+		"defaultDescription": "Slides, guides, and materials shared by your local Cursor community."
 	},
 	"recap": {
 		"backToEvents": "Back to events",

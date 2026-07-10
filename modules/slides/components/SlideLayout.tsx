@@ -92,9 +92,7 @@ export default function SlideLayout({
 						: 'items-start justify-center px-6 md:px-10 pt-10 md:pt-14'
 				}`}
 			>
-				<div className={`w-full ${isTitleSlide ? 'max-w-6xl mx-auto flex flex-col' : 'max-w-4xl'}`}>
-					{children}
-				</div>
+				<div className={`w-full ${isTitleSlide ? 'max-w-6xl mx-auto flex flex-col' : 'max-w-4xl'}`}>{children}</div>
 			</main>
 
 			<div className="fixed bottom-0 left-0 right-0 px-6 py-4 bg-cursor-bg/90 backdrop-blur-sm border-t border-cursor-border">

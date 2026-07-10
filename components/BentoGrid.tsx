@@ -24,14 +24,7 @@ type ExpandedTile = {
 };
 
 const HERO_EXPAND_LAYOUT_ID = 'hero-expanded-photo';
-const EXPAND_LAYOUT_MS = 450;
-
-const HERO_TILE_WASHES = [
-	'bg-gradient-to-br from-[#f54e00]/18 via-transparent to-[#f54e00]/8',
-	'bg-gradient-to-bl from-[#f59e0b]/16 via-transparent to-[#f59e0b]/6',
-	'bg-gradient-to-tr from-[#2dd4bf]/14 via-transparent to-[#2dd4bf]/5',
-	'bg-gradient-to-tl from-[#a78bfa]/12 via-transparent to-[#a78bfa]/5',
-] as const;
+const EXPAND_LAYOUT_MS = 220;
 
 function toGridPlacement(start: number, span?: number) {
 	return `${start} / span ${span ?? 1}`;
@@ -40,10 +33,6 @@ function toGridPlacement(start: number, span?: number) {
 function getSizes(colSpan: number, cols: number, fallback = 100) {
 	const ratio = Math.min(1, Math.max(colSpan / cols, 0));
 	return `${Math.round(ratio * fallback)}vw`;
-}
-
-function heroTileWashClass(tileIndex: number): string {
-	return HERO_TILE_WASHES[tileIndex % HERO_TILE_WASHES.length];
 }
 
 function heroExpandLayoutId(variant: TileVariant, index: number): string {
@@ -81,7 +70,7 @@ function BentoTile({
 
 	return (
 		<motion.div
-			initial={reducedMotion ? false : { opacity: 0, scale: 1.02 }}
+			initial={false}
 			animate={{
 				opacity: expanded !== null && !isExpanded ? 0 : 1,
 				scale: 1,
@@ -90,8 +79,7 @@ function BentoTile({
 				reducedMotion
 					? { duration: 0 }
 					: {
-							duration: 0.55,
-							delay: expanded !== null ? 0 : tileIndex * 0.04,
+							duration: 0.15,
 							ease: [0.22, 1, 0.36, 1],
 						}
 			}
@@ -110,7 +98,7 @@ function BentoTile({
 				aria-expanded={isExpanded}
 				className={`relative block h-full w-full appearance-none border-0 bg-transparent p-0 text-left ${
 					expandable && !isExpanded
-						? 'cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#f54e00]/60'
+						? 'cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-cursor-accent-orange/60'
 						: 'cursor-default'
 				}`}
 			>
@@ -126,7 +114,6 @@ function BentoTile({
 							sizes={getSizes(photo.colSpan ?? 1, cols)}
 							priority={priority}
 						/>
-						<div className={`pointer-events-none absolute inset-0 ${heroTileWashClass(tileIndex)}`} aria-hidden />
 					</motion.div>
 				)}
 			</button>
@@ -253,7 +240,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
 						transition={{ duration: reducedMotion ? 0 : 0.2 }}
 						onClick={handleCollapse}
 						aria-label="Show photo grid"
-						className="absolute inset-0 z-30 cursor-pointer appearance-none border-0 bg-cursor-bg-dark p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#f54e00]/60"
+						className="absolute inset-0 z-30 cursor-pointer appearance-none border-0 bg-cursor-bg-dark p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-cursor-accent-orange/60"
 					>
 						<motion.div
 							layoutId={heroExpandLayoutId(expanded.variant, expanded.index)}
@@ -268,10 +255,6 @@ const BentoGrid: React.FC<BentoGridProps> = ({
 								priority
 								className="object-cover"
 								sizes="100vw"
-							/>
-							<div
-								className={`pointer-events-none absolute inset-0 ${heroTileWashClass(expanded.index)}`}
-								aria-hidden
 							/>
 						</motion.div>
 					</motion.button>
