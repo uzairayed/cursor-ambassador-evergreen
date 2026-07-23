@@ -6,7 +6,7 @@ import { useI18n } from '@/lib/i18n';
 import { siteConfig } from '@/content/site.config';
 import { upcomingEvents as fallbackUpcoming } from '@/content/events';
 import { CursorEvent } from '@/lib/types';
-import Partners from '@/components/Partners';
+// import Partners from '@/components/Partners'; // restore when hosting partners are ready
 import { Button, TextLink } from '@/components/ui';
 import { MarketingColumn, MarketingGrid } from '@/components/layout/MarketingGrid';
 
@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ nextEvent = fallbackUpcoming[0] }) => {
 		<footer className="border-t border-cursor-border py-10">
 			<MarketingGrid>
 				<MarketingColumn width="full">
-					<Partners />
+					{/* Hosting partners — restore when ready: <Partners /> */}
 
 					<div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
 						<div>

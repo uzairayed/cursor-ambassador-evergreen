@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import HeroHeaderServer from '@/components/HeroHeaderServer';
 import AmbassadorSection from '@/components/AmbassadorSection';
-import FeaturedSection from '@/components/FeaturedSection';
+// import FeaturedSection from '@/components/FeaturedSection'; // restore when community resources are ready
 import UpcomingEvents from '@/components/UpcomingEvents';
 import PastEvents from '@/components/PastEvents';
 import GlobalEvents from '@/components/GlobalEvents';
@@ -80,9 +80,10 @@ export default async function Home() {
 		<GridSection key="ambassadors">
 			<AmbassadorSection />
 		</GridSection>,
-		<GridSection key="featured" width="reading">
-			<FeaturedSection />
-		</GridSection>,
+		// Community resources — restore when ready:
+		// <GridSection key="featured" width="reading">
+		// 	<FeaturedSection />
+		// </GridSection>,
 	];
 
 	if (showUpcoming) {
