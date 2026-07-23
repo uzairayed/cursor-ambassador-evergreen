@@ -5,7 +5,7 @@ import { RecapData } from '@/lib/types';
 // include only the ones relevant to your event.
 export const exampleEventRecap: RecapData = {
 	slug: 'example-event',
-	title: 'Cafe Cursor YourCity - Recap',
+	title: 'Cafe Cursor Pakistan - Recap',
 	date: 'February 14, 2026',
 	attendees: 38,
 	summary: [
