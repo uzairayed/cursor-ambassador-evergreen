@@ -129,6 +129,11 @@ export interface WorldEventPhoto {
 	alt: string;
 }
 
+export interface FaqItem {
+	question: string;
+	answer: string;
+}
+
 export interface SiteSections {
 	matchmaking?: boolean;
 	photoDisclaimer?: boolean;

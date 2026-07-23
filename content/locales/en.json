@@ -3,7 +3,12 @@
 		"community": "Community",
 		"events": "Events",
 		"recaps": "Recaps",
+		"faq": "FAQ",
 		"joinUs": "Join us"
+	},
+	"faq": {
+		"eyebrow": "FAQ",
+		"heading": "Common questions"
 	},
 	"home": {
 		"heroEyebrow": "Cursor Community · {city}",

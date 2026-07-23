@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import LanguageToggle from '@/components/LanguageToggle';
@@ -10,19 +11,29 @@ import { Button } from '@/components/ui';
 import { MarketingColumn, MarketingGrid } from '@/components/layout/MarketingGrid';
 import { siteConfig } from '@/content/site.config';
 
-const NAV_LINKS = [
-	{ href: '/#community', sectionId: 'community', key: 'nav.community' },
-	{ href: '/#events', sectionId: 'events', key: 'nav.events' },
-	{ href: '/#recaps', sectionId: 'recaps', key: 'nav.recaps' },
-] as const;
+type NavLink =
+	| { href: '/faq'; key: 'nav.faq'; kind: 'route' }
+	| { href: string; sectionId: string; key: string; kind: 'section' };
 
-function useScrollState() {
+const NAV_LINKS: NavLink[] = [
+	{ href: '/#community', sectionId: 'community', key: 'nav.community', kind: 'section' },
+	{ href: '/#events', sectionId: 'events', key: 'nav.events', kind: 'section' },
+	{ href: '/#recaps', sectionId: 'recaps', key: 'nav.recaps', kind: 'section' },
+	{ href: '/faq', key: 'nav.faq', kind: 'route' },
+];
+
+function useScrollState(isHome: boolean) {
 	const [scrolled, setScrolled] = useState(false);
 	const [activeSection, setActiveSection] = useState<string | null>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
 			setScrolled(window.scrollY > 20);
+
+			if (!isHome) {
+				setActiveSection(null);
+				return;
+			}
 
 			const sections = ['community', 'events', 'recaps'];
 			let current: string | null = null;
@@ -38,16 +49,25 @@ function useScrollState() {
 			setActiveSection(current);
 		};
 
+		handleScroll();
 		window.addEventListener('scroll', handleScroll, { passive: true });
 		return () => window.removeEventListener('scroll', handleScroll);
-	}, []);
+	}, [isHome]);
 
 	return { scrolled, activeSection };
 }
 
+function isNavLinkActive(link: NavLink, pathname: string, activeSection: string | null) {
+	if (link.kind === 'route') return pathname === link.href;
+	if (pathname !== '/') return false;
+	return activeSection === link.sectionId;
+}
+
 export default function Navbar() {
 	const { t } = useI18n();
-	const { scrolled, activeSection } = useScrollState();
+	const pathname = usePathname();
+	const isHome = pathname === '/';
+	const { scrolled, activeSection } = useScrollState(isHome);
 	const [mobileOpen, setMobileOpen] = useState(false);
 
 	const closeMobile = useCallback(() => setMobileOpen(false), []);
@@ -93,17 +113,17 @@ export default function Navbar() {
 						</Link>
 
 						<div className="hidden items-center gap-6 sm:flex">
-							{NAV_LINKS.map(({ href, sectionId, key }) => {
-								const isActive = activeSection === sectionId;
+							{NAV_LINKS.map((link) => {
+								const isActive = isNavLinkActive(link, pathname, activeSection);
 								return (
 									<Link
-										key={href}
-										href={href}
+										key={link.href}
+										href={link.href}
 										className={`text-sm transition-colors duration-150 ${
 											isActive ? 'text-cursor-text' : 'text-cursor-text-muted hover:text-cursor-text'
 										}`}
 									>
-										{t(key)}
+										{t(link.key)}
 									</Link>
 								);
 							})}
@@ -133,14 +153,14 @@ export default function Navbar() {
 			{mobileOpen && (
 				<div className="fixed inset-0 top-[52px] z-30 border-t border-cursor-border bg-cursor-bg sm:hidden">
 					<div className="flex flex-col items-center gap-6 pt-12">
-						{NAV_LINKS.map(({ href, key }) => (
+						{NAV_LINKS.map((link) => (
 							<Link
-								key={href}
-								href={href}
+								key={link.href}
+								href={link.href}
 								onClick={closeMobile}
 								className="text-lg text-cursor-text-muted hover:text-cursor-text transition-colors"
 							>
-								{t(key)}
+								{t(link.key)}
 							</Link>
 						))}
 						<LanguageToggle />
