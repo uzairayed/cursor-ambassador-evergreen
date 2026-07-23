@@ -49,9 +49,10 @@ function validateLayout(
 }
 
 function main() {
-	if (headerPhotoPool.length < desktopBentoSlots.length) {
+	const photoSlots = desktopBentoSlots.filter((slot) => !slot.panelCovered);
+	if (headerPhotoPool.length < photoSlots.length) {
 		console.warn(
-			`[validate-bento] Pool has ${headerPhotoPool.length} images for ${desktopBentoSlots.length} slots (repeat at runtime).`,
+			`[validate-bento] Pool has ${headerPhotoPool.length} images for ${photoSlots.length} slots (repeat at runtime).`,
 		);
 	}
 

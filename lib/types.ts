@@ -62,6 +62,8 @@ export interface BentoSlot {
 		colSpan?: number;
 	};
 	mobileHidden?: boolean;
+	/** Slot sits under the opaque hero copy panel — no photo assigned. */
+	panelCovered?: boolean;
 }
 
 export interface HeaderPhoto extends BentoSlot, BentoImage {}

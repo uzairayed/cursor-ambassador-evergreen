@@ -9,6 +9,8 @@ export const desktopBentoSlots: BentoSlot[] = [
 		rowSpan: 2,
 		colSpan: 2,
 		mobile: { row: 1, col: 1, rowSpan: 2, colSpan: 2 },
+		// Covered by the opaque Cursor copy panel — keep geometry, skip the photo.
+		panelCovered: true,
 	},
 	{
 		row: 1,

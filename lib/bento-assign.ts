@@ -46,23 +46,32 @@ function mobileVisibleSlots(slots: BentoSlot[]): BentoSlot[] {
 				col: mobile.col,
 				rowSpan: mobile.rowSpan,
 				colSpan: mobile.colSpan,
+				panelCovered: slot.panelCovered,
 			};
 		});
 }
 
 export function assignPhotosToSlots(pool: BentoImage[], slots: BentoSlot[], seed: string): HeaderPhoto[] {
-	if (pool.length < slots.length) {
+	const photoSlots = slots.filter((slot) => !slot.panelCovered);
+
+	if (pool.length < photoSlots.length) {
 		console.warn(
-			`[bento] Image pool (${pool.length}) is smaller than slot count (${slots.length}). Images will repeat.`,
+			`[bento] Image pool (${pool.length}) is smaller than slot count (${photoSlots.length}). Images will repeat.`,
 		);
 	}
 
 	const shuffled = seededShuffle(pool, seed);
+	let photoIndex = 0;
 
-	return slots.map((slot, index) => ({
-		...slot,
-		...shuffled[index % shuffled.length],
-	}));
+	return slots.map((slot) => {
+		if (slot.panelCovered) {
+			return { ...slot, src: '', alt: '' };
+		}
+
+		const image = shuffled[photoIndex % shuffled.length];
+		photoIndex += 1;
+		return { ...slot, ...image };
+	});
 }
 
 export function assignHeroPhotos(pool: BentoImage[], slots: BentoSlot[], seed: string): HeroBentoPhotos {
@@ -82,10 +91,13 @@ export function slotArea(slot: Pick<BentoSlot, 'rowSpan' | 'colSpan'>): number {
 }
 
 export function isPriorityPhoto(photo: HeaderPhoto, photos: HeaderPhoto[]): boolean {
-	const maxArea = Math.max(...photos.map(slotArea));
+	if (!photo.src) return false;
+
+	const visible = photos.filter((candidate) => candidate.src);
+	const maxArea = Math.max(...visible.map(slotArea));
 	if (slotArea(photo) < maxArea) return false;
 
-	const largest = photos
+	const largest = visible
 		.filter((candidate) => slotArea(candidate) === maxArea)
 		.sort((a, b) => a.row - b.row || a.col - b.col);
 

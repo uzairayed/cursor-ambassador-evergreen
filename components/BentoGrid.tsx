@@ -102,7 +102,7 @@ function BentoTile({
 						: 'cursor-default'
 				}`}
 			>
-				{isExpanded ? (
+				{isExpanded || !photo.src ? (
 					<div className="absolute inset-0 bg-cursor-bg-dark" aria-hidden />
 				) : (
 					<motion.div layoutId={heroExpandLayoutId(variant, tileIndex)} className="absolute inset-0">
