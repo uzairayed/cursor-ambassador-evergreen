@@ -14,17 +14,18 @@ import PhotoDisclaimer from '@/components/PhotoDisclaimer';
 import LumaCalendarSection from '@/components/LumaCalendar';
 import CommunityTweetsSection from '@/components/CommunityTweetsSection';
 import { siteConfig } from '@/content/site.config';
-import { upcomingEvents } from '@/content/events';
+import { getEvents } from '@/lib/luma';
+import { CursorEvent } from '@/lib/types';
 import { MarketingColumn, MarketingGrid } from '@/components/layout/MarketingGrid';
 
-function buildHomeJsonLd() {
+function buildHomeJsonLd(upcoming: CursorEvent[]) {
 	const org = {
 		'@type': 'Organization',
 		name: siteConfig.communityName,
 		url: siteConfig.cursorCommunityUrl,
 	};
 
-	const eventItems = upcomingEvents
+	const eventItems = upcoming
 		.filter((event) => event.date)
 		.map((event) => ({
 			'@type': 'Event',
@@ -59,76 +60,104 @@ function GridSection({ children, width = 'wide' }: GridSectionProps) {
 	);
 }
 
-const Home: React.FC = () => (
-	<main className="min-h-screen scroll-smooth bg-cursor-bg text-cursor-text">
-		<JsonLd data={buildHomeJsonLd()} />
-		<Navbar />
-		<HeroHeaderServer />
+function hasPastRecaps(events: CursorEvent[]) {
+	return events.some((event) => event.thumbnail || event.recapPath);
+}
 
-		<div className="py-20 md:py-28">
-			<GridSection>
-				<AmbassadorSection />
-			</GridSection>
-			<GridSection>
-				<SectionDivider />
-			</GridSection>
-			<GridSection width="reading">
-				<FeaturedSection />
-			</GridSection>
-			<GridSection>
-				<SectionDivider />
-			</GridSection>
-			<GridSection>
-				<UpcomingEvents />
-			</GridSection>
-			{siteConfig.sections.matchmaking ? (
-				<>
-					<GridSection width="reading">
-						<MatchmakingSection />
-					</GridSection>
-					<GridSection>
-						<SectionDivider />
-					</GridSection>
-				</>
-			) : null}
-			{siteConfig.sections.photoDisclaimer ? (
-				<>
-					<GridSection width="reading">
-						<PhotoDisclaimer />
-					</GridSection>
-					<GridSection>
-						<SectionDivider />
-					</GridSection>
-				</>
-			) : null}
-			<GridSection>
+export default async function Home() {
+	const { upcoming, past } = await getEvents();
+
+	const showUpcoming = upcoming.length > 0;
+	const showMatchmaking = siteConfig.sections.matchmaking;
+	const showPhotoDisclaimer = siteConfig.sections.photoDisclaimer;
+	const showLumaCalendar = siteConfig.sections.lumaCalendar && Boolean(siteConfig.lumaCalendarEmbedUrl);
+	const showPast = hasPastRecaps(past);
+	const showTweets = siteConfig.sections.communityTweets;
+
+	// Build the same section order as the evergreen template, but skip empty
+	// optional blocks so orphaned dividers don't create large blank gaps.
+	const blocks: React.ReactNode[] = [
+		<GridSection key="ambassadors">
+			<AmbassadorSection />
+		</GridSection>,
+		<GridSection key="featured" width="reading">
+			<FeaturedSection />
+		</GridSection>,
+	];
+
+	if (showUpcoming) {
+		blocks.push(
+			<GridSection key="upcoming">
+				<UpcomingEvents events={upcoming} />
+			</GridSection>,
+		);
+	}
+
+	if (showMatchmaking) {
+		blocks.push(
+			<GridSection key="matchmaking" width="reading">
+				<MatchmakingSection />
+			</GridSection>,
+		);
+	}
+
+	if (showPhotoDisclaimer) {
+		blocks.push(
+			<GridSection key="photo-disclaimer" width="reading">
+				<PhotoDisclaimer />
+			</GridSection>,
+		);
+	}
+
+	if (showLumaCalendar) {
+		blocks.push(
+			<GridSection key="luma-calendar">
 				<LumaCalendarSection />
-			</GridSection>
-			<GridSection>
-				<SectionDivider />
-			</GridSection>
-			<GridSection>
-				<PastEvents />
-			</GridSection>
-			{siteConfig.sections.communityTweets ? (
-				<>
-					<GridSection>
-						<SectionDivider />
-					</GridSection>
-					<GridSection>
-						<CommunityTweetsSection />
-					</GridSection>
-				</>
-			) : null}
-			<GridSection>
-				<SectionDivider />
-			</GridSection>
-			<GridSection>
-				<GlobalEvents />
-			</GridSection>
-		</div>
-		<Footer />
-	</main>
-);
+			</GridSection>,
+		);
+	}
 
-export default Home;
+	if (showPast) {
+		blocks.push(
+			<GridSection key="past">
+				<PastEvents events={past} />
+			</GridSection>,
+		);
+	}
+
+	if (showTweets) {
+		blocks.push(
+			<GridSection key="tweets">
+				<CommunityTweetsSection />
+			</GridSection>,
+		);
+	}
+
+	blocks.push(
+		<GridSection key="global">
+			<GlobalEvents />
+		</GridSection>,
+	);
+
+	return (
+		<main className="min-h-screen scroll-smooth bg-cursor-bg text-cursor-text">
+			<JsonLd data={buildHomeJsonLd(upcoming)} />
+			<Navbar />
+			<HeroHeaderServer />
+
+			<div className="py-20 md:py-28">
+				{blocks.flatMap((block, index) =>
+					index === 0
+						? [block]
+						: [
+								<GridSection key={`divider-${index}`}>
+									<SectionDivider />
+								</GridSection>,
+								block,
+							],
+				)}
+			</div>
+			<Footer nextEvent={upcoming[0]} />
+		</main>
+	);
+}

@@ -4,14 +4,18 @@ import React from 'react';
 import Image from 'next/image';
 import { useI18n } from '@/lib/i18n';
 import { siteConfig } from '@/content/site.config';
-import { upcomingEvents } from '@/content/events';
+import { upcomingEvents as fallbackUpcoming } from '@/content/events';
+import { CursorEvent } from '@/lib/types';
 import Partners from '@/components/Partners';
 import { Button, TextLink } from '@/components/ui';
 import { MarketingColumn, MarketingGrid } from '@/components/layout/MarketingGrid';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+	nextEvent?: CursorEvent;
+}
+
+const Footer: React.FC<FooterProps> = ({ nextEvent = fallbackUpcoming[0] }) => {
 	const { t } = useI18n();
-	const nextEvent = upcomingEvents[0];
 	const joinUrl = nextEvent?.lumaUrl ?? siteConfig.lumaUrl;
 
 	return (

@@ -1,19 +1,24 @@
 'use client';
 
 import React from 'react';
-import { upcomingEvents } from '@/content/events';
+import { upcomingEvents as fallbackUpcoming } from '@/content/events';
+import { CursorEvent } from '@/lib/types';
 import { useI18n } from '@/lib/i18n';
 import { Badge, TextLink } from '@/components/ui';
 import { groupEventsByDate } from '@/lib/group-events-by-date';
 
-const UpcomingEvents: React.FC = () => {
+interface UpcomingEventsProps {
+	events?: CursorEvent[];
+}
+
+const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ events = fallbackUpcoming }) => {
 	const { locale, t } = useI18n();
 
-	if (upcomingEvents.length === 0) {
+	if (events.length === 0) {
 		return null;
 	}
 
-	const groups = groupEventsByDate(upcomingEvents, locale);
+	const groups = groupEventsByDate(events, locale);
 
 	return (
 		<section id="events" className="mb-20 scroll-mt-20">
