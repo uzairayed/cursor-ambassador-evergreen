@@ -8,7 +8,10 @@
 	},
 	"faq": {
 		"eyebrow": "FAQ",
-		"heading": "Common questions"
+		"heading": "Common questions",
+		"searchLabel": "Search questions",
+		"searchPlaceholder": "Search questions…",
+		"noResults": "No questions match your search."
 	},
 	"home": {
 		"heroEyebrow": "Cursor Community · {city}",

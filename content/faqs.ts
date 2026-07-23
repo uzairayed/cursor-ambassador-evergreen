@@ -27,4 +27,9 @@ export const faqs: FaqItem[] = [
 		answer:
 			'We host meetups across Pakistan, including Islamabad, Lahore, Karachi, and more as the community grows.',
 	},
+	{
+		question: "Why isn't the Cursor student plan available in Pakistan?",
+		answer:
+			'Cursor discontinued new sign-ups for the legacy student discount on June 25, 2026, worldwide, not only Pakistan, because of fraud and to rebuild how they support students globally. If you already had the discount, your rate continues until that plan ends.',
+	},
 ];
