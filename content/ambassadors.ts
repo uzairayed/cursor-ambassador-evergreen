@@ -1,33 +1,16 @@
 import { Ambassador } from '@/lib/types';
 
-// REPLACE: Swap names, roles, photos, and links with your ambassador team.
 export const ambassadors: Ambassador[] = [
 	{
-		name: 'Ambassador One',
+		name: 'Yahya Qureshi',
 		role: 'Community Lead',
 		photo: '/images/ambassadors/amb1.jpg',
-		links: {
-			x: 'https://x.com/',
-			linkedin: 'https://linkedin.com/',
-			website: 'https://example.com/',
-		},
+		links: {},
 	},
 	{
-		name: 'Ambassador Two',
-		role: 'Co-organizer',
+		name: 'Syed Uzair Ahmed',
+		role: 'Community Administrator',
 		photo: '/images/ambassadors/amb2.jpg',
-		links: {
-			github: 'https://github.com/',
-			linkedin: 'https://linkedin.com/',
-		},
-	},
-	{
-		name: 'Ambassador Three',
-		role: 'Event Operations',
-		photo: '/images/ambassadors/amb3.jpg',
-		links: {
-			x: 'https://x.com/',
-			website: 'https://example.com/',
-		},
+		links: {},
 	},
 ];
