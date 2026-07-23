@@ -41,7 +41,9 @@ const AmbassadorSection: React.FC = () => {
 
 	return (
 		<section id="community" className="mb-20 scroll-mt-20">
-			<p className="cursor-eyebrow mb-2">{t('ambassadors.title', { communityName: siteConfig.communityName })}</p>
+			<p className="cursor-eyebrow mb-2">
+				{t('ambassadors.title', { communityName: siteConfig.communityNameLocal })}
+			</p>
 			<h2 className="cursor-section-title mb-8 text-cursor-text">{t('ambassadors.heading')}</h2>
 
 			<div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
